@@ -22,6 +22,7 @@ func (s *RecommenderService) GenerateRecommendations(req *RecommendationRequest)
 
 	// Step 1: Fetch student profile
 	studentProfile, err := s.a1ceClient.GetStudentProfile(req.StudentID)
+	fmt.Println("\tjwt token: ", s.a1ceClient.JWTToken)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch student profile: %w", err)
 	}

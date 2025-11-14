@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -17,19 +18,60 @@ func main() {
 	mux.HandleFunc("/api/v1/course-catalog", handleCourseCatalog)
 	mux.HandleFunc("/api/v1/health", handleHealth)
 
+	// Wrap with middleware
+	handler := corsMiddleware(loggingMiddleware(authMiddleware(mux)))
+
 	// Create server with timeouts
 	server := &http.Server{
 		Addr:         ":8080",
-		Handler:      loggingMiddleware(authMiddleware(mux)),
+		Handler:      handler,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 		IdleTimeout:  120 * time.Second,
 	}
 
-	log.Println("Starting A1CE Course Recommender API on port 8080...")
+	log.Println("===========================================")
+	log.Println("A1CE Course Recommender API Server")
+	log.Println("===========================================")
+	log.Println("Server listening on: http://localhost:8080")
+	log.Println("API Base URL: http://localhost:8080/api/v1")
+	log.Println("")
+	log.Println("Endpoints:")
+	log.Println("  GET  /api/v1/health")
+	log.Println("  POST /api/v1/recommendations")
+	log.Println("  GET  /api/v1/student-data")
+	log.Println("  GET  /api/v1/course-catalog")
+	log.Println("===========================================")
+	log.Println("CORS: Enabled (all origins)")
+	log.Println("Waiting for requests...")
+	log.Println("===========================================")
+
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("Server failed to start: %v", err)
 	}
+}
+
+// CORS middleware - must be FIRST in the chain
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("[CORS] Request from Origin: %s", r.Header.Get("Origin"))
+
+		// Set CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, Accept")
+		w.Header().Set("Access-Control-Expose-Headers", "Content-Length")
+		w.Header().Set("Access-Control-Max-Age", "86400")
+
+		// Handle preflight OPTIONS request
+		if r.Method == "OPTIONS" {
+			log.Printf("[CORS] Preflight request for %s", r.URL.Path)
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }
 
 // Middleware for logging requests
@@ -124,6 +166,10 @@ func handleRecommendations(w http.ResponseWriter, r *http.Request) {
 
 	// Generate recommendations
 	service := NewRecommenderService()
+
+	// Don't forget to add token
+	service.a1ceClient.JWTToken = getAuthorzationCred(r, "Bearer")
+
 	result, err := service.GenerateRecommendations(&req)
 	if err != nil {
 		log.Printf("Error generating recommendations: %v", err)
@@ -150,6 +196,10 @@ func handleStudentData(w http.ResponseWriter, r *http.Request) {
 
 	// Fetch student data
 	client := NewA1CEClient()
+
+	// Don't forget to add token
+	client.JWTToken = getAuthorzationCred(r, "Bearer")
+
 	profile, err := client.GetStudentProfile(studentID)
 	if err != nil {
 		log.Printf("Error fetching student data: %v", err)
@@ -199,4 +249,16 @@ func sendError(w http.ResponseWriter, statusCode int, errorCode, message, detail
 		"message":    message,
 		"details":    details,
 	})
+}
+
+func getAuthorzationCred(r *http.Request, target_type string) string {
+	raw_auth_vals := strings.Split(r.Header.Get("Authorization"), " ")
+	if len(raw_auth_vals) == 2 {
+		auth_type := raw_auth_vals[0]
+		cred := raw_auth_vals[1]
+		if auth_type == target_type {
+			return cred
+		}
+	}
+	return ""
 }
