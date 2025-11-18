@@ -13,10 +13,10 @@ func OptimizeCourseSet(
 	totalCredits := 0.0
 	coveredCompetencies := getMapKeys(studentProfile.Competencies)
 	distributionCoverage := make(map[string]float64)
-	
+
 	// Copy existing distribution credits
 	for k, v := range studentProfile.DistributionCredits {
-		distributionCoverage[k] = v
+		distributionCoverage[k] = float64(v.Earned)
 	}
 
 	minCredits := 36.0
@@ -50,12 +50,12 @@ func OptimizeCourseSet(
 		if req, exists := requirements.DistributionRequirements[subdomain]; exists {
 			requiredInSubdomain = req
 		}
-		
+
 		currentInSubdomain := 0.0
 		if current, exists := distributionCoverage[subdomain]; exists {
 			currentInSubdomain = current
 		}
-		
+
 		gapInSubdomain := math.Max(0, requiredInSubdomain-currentInSubdomain)
 		distributionValue := 0.0
 		if gapInSubdomain > 0 {
@@ -119,10 +119,10 @@ func EvaluateRecommendationSet(
 		0.4*programProgressFit
 
 	return &EvaluationMetrics{
-		GoodnessScore:              goodnessScore,
-		SkillCoveragePercentage:    skillCoverage,
-		PrerequisiteCompliance:     prereqCompliance,
-		ProgramProgressFit:         programProgressFit,
+		GoodnessScore:           goodnessScore,
+		SkillCoveragePercentage: skillCoverage,
+		PrerequisiteCompliance:  prereqCompliance,
+		ProgramProgressFit:      programProgressFit,
 	}
 }
 
@@ -193,7 +193,7 @@ func CalculateProgramProgressFit(
 
 	// Component 2: Distribution Area Progress
 	var distributionProgressScores []float64
-	
+
 	distributionCoverage := make(map[string]float64)
 	for _, courseRec := range recommendedSet {
 		subdomain := courseRec.Course.SubdomainID
@@ -203,7 +203,7 @@ func CalculateProgramProgressFit(
 	for subdomain, requiredCredits := range requirements.DistributionRequirements {
 		currentCredits := 0.0
 		if credits, exists := studentProfile.DistributionCredits[subdomain]; exists {
-			currentCredits = credits
+			currentCredits = float64(credits.Earned)
 		}
 
 		recommendedCredits := 0.0

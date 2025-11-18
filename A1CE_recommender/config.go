@@ -6,11 +6,11 @@ import (
 
 // Config holds application configuration
 type Config struct {
-	ServerPort    string
-	A1CEBaseURL   string
-	JWTSecret     string
-	UseMockData   bool
-	LogLevel      string
+	ServerPort  string
+	A1CEBaseURL string
+	JWTSecret   string
+	UseMockData bool
+	LogLevel    string
 }
 
 // LoadConfig loads configuration from environment variables
@@ -37,7 +37,7 @@ func getEnv(key, defaultValue string) string {
 1. Initialize Go module on the server:
    cd ~/myproject
    go mod init a1ce-recommender
-   
+
 2. Create all the Go files:
    - main.go
    - models.go
@@ -55,7 +55,7 @@ func getEnv(key, defaultValue string) string {
 
 5. Run the server:
    ./recommender
-   
+
    Or run directly:
    go run .
 
@@ -93,7 +93,7 @@ For production deployment:
 
 3. Run as a service using systemd:
    Create /etc/systemd/system/recommender.service:
-   
+
    [Unit]
    Description=A1CE Course Recommender
    After=network.target

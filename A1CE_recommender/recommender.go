@@ -71,7 +71,7 @@ func CalculateCompetencyMatchScore(course Course, profile *StudentProfile) float
 // CalculateInterestScore measures alignment with student's interests
 func CalculateInterestScore(course Course, profile *StudentProfile) float64 {
 	subdomain := course.SubdomainID
-	
+
 	baseInterest := 0.1 // Default for unexplored areas
 	if weight, exists := profile.InterestWeights[subdomain]; exists {
 		baseInterest = weight
@@ -109,8 +109,8 @@ func CalculateProgramProgressScore(
 	}
 
 	completedCredits := 0.0
-	if completed, exists := profile.DistributionCredits[subdomain]; exists {
-		completedCredits = completed
+	if credits, exists := profile.DistributionCredits[subdomain]; exists {
+		completedCredits = float64(credits.Earned)
 	}
 
 	distributionScore := 0.0
@@ -127,7 +127,7 @@ func CalculateProgramProgressScore(
 	}
 
 	// Component 3: Overall Degree Progress
-	totalProgress := profile.TotalCredits / requirements.TotalCreditsRequired
+	totalProgress := float64(profile.TotalCredits.Earned) / requirements.TotalCreditsRequired
 	urgencyMultiplier := 1.0
 	if totalProgress < 0.5 {
 		urgencyMultiplier = 1.2
@@ -160,7 +160,7 @@ func InferInterestAreas(completedCourses []string, courseCatalog []Course, compe
 		if course, exists := courseMap[courseID]; exists {
 			subdomain := course.SubdomainID
 			subdomainCounts[subdomain]++
-			
+
 			if grade, hasGrade := competencies[courseID]; hasGrade {
 				subdomainPerformance[subdomain] = append(subdomainPerformance[subdomain], grade)
 			}
@@ -169,19 +169,19 @@ func InferInterestAreas(completedCourses []string, courseCatalog []Course, compe
 
 	interestWeights := make(map[string]float64)
 	totalCourses := float64(len(completedCourses))
-	
+
 	if totalCourses == 0 {
 		return interestWeights
 	}
 
 	for subdomain, count := range subdomainCounts {
 		concentrationWeight := float64(count) / totalCourses
-		
+
 		performanceWeight := 0.5 // Default
 		if len(subdomainPerformance[subdomain]) > 0 {
 			performanceWeight = mean(subdomainPerformance[subdomain]) / 4.0
 		}
-		
+
 		interestWeights[subdomain] = 0.6*concentrationWeight + 0.4*performanceWeight
 	}
 
@@ -190,7 +190,7 @@ func InferInterestAreas(completedCourses []string, courseCatalog []Course, compe
 	for _, weight := range interestWeights {
 		totalWeight += weight
 	}
-	
+
 	if totalWeight > 0 {
 		for subdomain := range interestWeights {
 			interestWeights[subdomain] /= totalWeight
@@ -228,7 +228,7 @@ func intersection(a, b []string) []string {
 	for _, item := range a {
 		set[item] = true
 	}
-	
+
 	var result []string
 	for _, item := range b {
 		if set[item] {
@@ -243,7 +243,7 @@ func difference(a, b []string) []string {
 	for _, item := range b {
 		set[item] = true
 	}
-	
+
 	var result []string
 	for _, item := range a {
 		if !set[item] {

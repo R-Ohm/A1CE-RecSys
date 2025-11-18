@@ -160,7 +160,7 @@ func generateReason(course Course, fitScore, progressScore, interestScore float6
 		return fmt.Sprintf("Strongly aligns with your interests in %s", course.SubdomainName)
 	}
 	if fitScore > 0.8 {
-		return fmt.Sprintf("Excellent fit based on your competencies and academic goals")
+		return "Excellent fit based on your competencies and academic goals"
 	}
 	return fmt.Sprintf("Good course option in %s that advances your degree progress", course.SubdomainName)
 }

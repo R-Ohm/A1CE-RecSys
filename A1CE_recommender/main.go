@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -219,9 +220,10 @@ func handleCourseCatalog(w http.ResponseWriter, r *http.Request) {
 	}
 
 	semester := r.URL.Query().Get("semester")
-	curriculumVersion := r.URL.Query().Get("curriculum_version")
+	curriculumVersionStr := r.URL.Query().Get("curriculum_version")
+	curriculumVersion, err := strconv.Atoi(curriculumVersionStr)
 
-	if semester == "" || curriculumVersion == "" {
+	if semester == "" || err != nil {
 		sendError(w, http.StatusBadRequest, "MISSING_REQUIRED_FIELD", "semester and curriculum_version are required", "")
 		return
 	}

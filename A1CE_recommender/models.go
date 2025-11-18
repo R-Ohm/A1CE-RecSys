@@ -4,11 +4,11 @@ import "time"
 
 // Request structures
 type RecommendationRequest struct {
-	StudentID      string                 `json:"student_id"`
-	Semester       string                 `json:"semester"`
-	MaxCreditLoad  float64                `json:"max_credit_load"`
-	MaxSets        int                    `json:"max_sets"`
-	Constraints    *RecommendationFilters `json:"constraints,omitempty"`
+	StudentID     string                 `json:"student_id"`
+	Semester      string                 `json:"semester"`
+	MaxCreditLoad float64                `json:"max_credit_load"`
+	MaxSets       int                    `json:"max_sets"`
+	Constraints   *RecommendationFilters `json:"constraints,omitempty"`
 }
 
 type RecommendationFilters struct {
@@ -19,17 +19,17 @@ type RecommendationFilters struct {
 
 // Student profile structures
 type StudentProfile struct {
-	StudentID            string             `json:"student_id"`
-	UniversityCode       string             `json:"university_code"`
-	CurriculumVersion    string             `json:"curriculum_version"`
-	Competencies         map[string]float64 `json:"competencies"`
-	CompletedCourses     []string           `json:"completed_courses"`
-	DistributionCredits  map[string]float64 `json:"distribution_credits"`
-	RequiredCompetencies []string           `json:"required_competencies"`
-	TotalCredits         float64            `json:"total_credits"`
-	InterestWeights      map[string]float64 `json:"interest_weights"`
-	MaxCreditLoad        float64            `json:"max_credit_load"`
-	Semester             string             `json:"semester"`
+	StudentID            string                `json:"student_id"`
+	UniversityCode       string                `json:"university_code"`
+	CurriculumVersion    int                   `json:"curriculum_version"`
+	Competencies         map[string]float64    `json:"competencies"`
+	CompletedCourses     []string              `json:"completed_courses"`
+	DistributionCredits  map[string]A1CECredit `json:"distribution_credits"`
+	RequiredCompetencies []string              `json:"required_competencies"`
+	TotalCredits         A1CECredit            `json:"total_credits"`
+	InterestWeights      map[string]float64    `json:"interest_weights"`
+	MaxCreditLoad        float64               `json:"max_credit_load"`
+	Semester             string                `json:"semester"` // Currently not used
 }
 
 // Course structures
@@ -48,7 +48,7 @@ type Course struct {
 
 // Curriculum requirements
 type CurriculumRequirements struct {
-	CurriculumVersion        string             `json:"curriculum_version"`
+	CurriculumVersion        int                `json:"curriculum_version"`
 	RequiredCompetencies     []string           `json:"required_competencies"`
 	DistributionRequirements map[string]float64 `json:"distribution_requirements"`
 	TotalCreditsRequired     float64            `json:"total_credits_required"`
@@ -56,14 +56,14 @@ type CurriculumRequirements struct {
 
 // Recommendation output structures
 type RecommendedCourse struct {
-	Course                  Course   `json:"course"`
-	FitScore                float64  `json:"fit_score"`
-	MatchedCompetencies     []string `json:"matched_competencies"`
-	MissingCompetencies     []string `json:"missing_competencies"`
-	CompetencyMatchScore    float64  `json:"competency_match_score"`
-	InterestAlignmentScore  float64  `json:"interest_alignment_score"`
-	ProgramProgressScore    float64  `json:"program_progress_score"`
-	Reason                  string   `json:"reason"`
+	Course                 Course   `json:"course"`
+	FitScore               float64  `json:"fit_score"`
+	MatchedCompetencies    []string `json:"matched_competencies"`
+	MissingCompetencies    []string `json:"missing_competencies"`
+	CompetencyMatchScore   float64  `json:"competency_match_score"`
+	InterestAlignmentScore float64  `json:"interest_alignment_score"`
+	ProgramProgressScore   float64  `json:"program_progress_score"`
+	Reason                 string   `json:"reason"`
 }
 
 type RecommendationSet struct {
@@ -92,32 +92,39 @@ type RecommendationMetadata struct {
 
 // A1CE API response structures
 type A1CEStudentIdentity struct {
-	StudentID         string `json:"student_id"`
+	StudentID         string `json:"id"`
 	UniversityCode    string `json:"university_code"`
-	CurriculumVersion string `json:"curriculum_version"`
+	CurriculumVersion int    `json:"curriculum_version"`
 }
 
 type A1CECompetencyCard struct {
-	CompetencyID string  `json:"competency_id"`
-	CourseCode   string  `json:"course_code"`
-	Grade        float64 `json:"grade"`
+	CompetencyID string  `json:"id"`
+	CourseCode   string  `json:"competency_code"`
+	Grade        float64 `json:"mastery_level"`
 	Status       string  `json:"status"`
 }
 
+// for A1CECreditStatus
+type A1CECredit struct {
+	Earned   int `json:"total_earned_credits"`
+	Required int `json:"total_required_credits"`
+	Working  int `json:"total_working_credits"`
+}
+
 type A1CECreditStatus struct {
-	DistributionCredits map[string]float64 `json:"distribution_credits"`
-	TotalCredits        float64            `json:"total_credits"`
+	DistributionCredits map[string]A1CECredit `json:"distribution_area_credit"`
+	TotalCredits        A1CECredit            `json:"overall_credit"`
 }
 
 type A1CEGraduationStatus struct {
-	RequiredCompetencies []string           `json:"required_competencies"`
-	DistributionCredits  map[string]float64 `json:"finished_distribution_credits"`
+	RequiredCompetencies []string `json:"required_course_not_taken"`
+	A1CECreditStatus
 }
 
 type CourseCatalogResponse struct {
 	Status            string   `json:"status"`
 	Semester          string   `json:"semester"`
-	CurriculumVersion string   `json:"curriculum_version"`
+	CurriculumVersion int      `json:"curriculum_version"`
 	Courses           []Course `json:"courses"`
 	TotalCourses      int      `json:"total_courses"`
 }
