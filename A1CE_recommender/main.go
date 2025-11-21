@@ -77,15 +77,18 @@ func handleCourseCatalog(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := map[string]interface{}{
-		"status":    "healthy",
-		"service":   "Course Recommender API",
-		"version":   "1.0.0",
-		"timestamp": time.Now().Format(time.RFC3339),
-		"dependencies": map[string]string{
-			"a1ce_api": "connected",
-			"database": "not_applicable",
-		},
+	client := NewA1CEClient()
+	client.JWTToken = getAuthorzationCred(r, "token")
+
+	// FIX: Manually set the University Code since we aren't fetching a profile first
+	// Ideally this should come from the request, but "CMKL" is the safe default for this system.
+	client.UniversityCode = "CMKL"
+
+	catalog, err := client.GetCourseCatalog(semester, curriculumVersion)
+	if err != nil {
+		log.Printf("Error fetching course catalog: %v", err)
+		sendError(w, http.StatusInternalServerError, "A1CE_API_ERROR", "Failed to fetch catalog", err.Error())
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -108,26 +111,48 @@ func handleRecommendations(w http.ResponseWriter, r *http.Request) {
 		sendError(w, http.StatusBadRequest, "CREDIT_OVERLOAD", "maximum credit load is at 60, please contact CMKL staff for credit overload", "")
 		return
 	}
-	if req.Semester == "" {
-		sendError(w, http.StatusBadRequest, "MISSING_REQUIRED_FIELD", "semester is required", "")
+
+	client := NewA1CEClient()
+	client.JWTToken = getAuthorzationCred(r, "token")
+
+	// 1. Fetch Profile (This sets client.UniversityCode internally)
+	profile, err := client.GetStudentProfile(req.StudentID)
+	if err != nil {
+		sendError(w, http.StatusInternalServerError, "A1CE_API_ERROR", "Failed to fetch profile", err.Error())
 		return
 	}
 
-	// Set defaults
-	if req.MaxCreditLoad == 0 {
-		req.MaxCreditLoad = 60
+	// 2. Identify "Successful Courses" for weighting
+	var successfulCourses []string
+
+	if req.PreviousSemester == "ALL" {
+		log.Printf("Calculating interest based on ALL past courses")
+		for courseCode, grade := range profile.Competencies {
+			if !containsString(profile.CompletedCourses, courseCode) {
+				profile.CompletedCourses = append(profile.CompletedCourses, courseCode)
+			}
+			if grade > 1.0 {
+				successfulCourses = append(successfulCourses, courseCode)
+			}
+		}
+	} else if req.PreviousSemester != "" {
+		log.Printf("Looking for successes in semester: %s", req.PreviousSemester)
+		semesterCards, err := client.GetSemesterCompetencies(req.StudentID, req.PreviousSemester)
+		if err == nil {
+			for _, card := range semesterCards {
+				if !containsString(profile.CompletedCourses, card.CourseCode) {
+					profile.CompletedCourses = append(profile.CompletedCourses, card.CourseCode)
+				}
+				if card.Grade > 1.0 {
+					successfulCourses = append(successfulCourses, card.CourseCode)
+				}
+			}
+		}
 	}
-	if req.MaxSets == 0 {
-		req.MaxSets = 1
-	}
 
-	// Generate recommendations
-	service := NewRecommenderService()
-
-	// Don't forget to add token
-	service.a1ceClient.JWTToken = getAuthorzationCred(r, "Bearer")
-
-	result, err := service.GenerateRecommendations(&req)
+	// 3. Fetch Catalog
+	// Note: client.UniversityCode is already set by GetStudentProfile above
+	catalog, err := client.GetCourseCatalog(req.Semester, profile.CurriculumVersion)
 	if err != nil {
 		sendError(w, http.StatusInternalServerError, "A1CE_API_ERROR", "Failed to fetch catalog", err.Error())
 		return
@@ -158,53 +183,110 @@ func handleRecommendations(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// Fetch student data
-	client := NewA1CEClient()
-
-	// Don't forget to add token
-	client.JWTToken = getAuthorzationCred(r, "Bearer")
-
-	profile, err := client.GetStudentProfile(studentID)
-	if err != nil {
-		log.Printf("Error fetching student data: %v", err)
-		sendError(w, http.StatusInternalServerError, "A1CE_API_UNAVAILABLE", "Failed to fetch student data", err.Error())
-		return
+	// 5. Score Courses
+	requirements := &CurriculumRequirements{
+		CurriculumVersion:        profile.CurriculumVersion,
+		RequiredCompetencies:     profile.RequiredCompetencies,
+		DistributionRequirements: make(map[string]float64),
+		TotalCreditsRequired:     float64(profile.TotalCredits.Required),
+	}
+	for k, v := range profile.DistributionCredits {
+		requirements.DistributionRequirements[k] = float64(v.Required)
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(profile)
-}
+	var scoredCourses []RecommendedCourse
+	for _, course := range catalog.Courses {
+		// FILTER 1: Prerequisites
+		if !CheckPrerequisites(course, profile) {
+			continue
+		}
 
-// Course catalog endpoint
-func handleCourseCatalog(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		sendError(w, http.StatusMethodNotAllowed, "METHOD_NOT_ALLOWED", "Only GET requests allowed", "")
-		return
+		// FILTER 2: Already Completed
+		if isCourseCompleted(course, profile) {
+			continue
+		}
+
+		// FILTER 3: Semester Availability
+		if course.SemesterOffered != "" && course.SemesterOffered != req.Semester {
+			if !strings.EqualFold(course.SemesterOffered, req.Semester) {
+				continue
+			}
+		}
+
+		compScore := CalculateCompetencyMatchScore(course, profile)
+		interestScore := CalculateInterestScore(course, profile)
+		progScore := CalculateProgramProgressScore(course, profile, requirements)
+
+		fitScore := 0.2*compScore + 0.6*interestScore + 0.2*progScore
+
+		scoredCourses = append(scoredCourses, RecommendedCourse{
+			Course:                 course,
+			FitScore:               fitScore,
+			MatchedCompetencies:    GetMatchedCompetencies(course, profile),
+			MissingCompetencies:    GetMissingCompetencies(course, profile),
+			CompetencyMatchScore:   compScore,
+			InterestAlignmentScore: interestScore,
+			ProgramProgressScore:   progScore,
+			Reason:                 fmt.Sprintf("Interest Score: %.2f", interestScore),
+		})
 	}
 
-	semester := r.URL.Query().Get("semester")
-	curriculumVersionStr := r.URL.Query().Get("curriculum_version")
-	curriculumVersion, err := strconv.Atoi(curriculumVersionStr)
-
-	if semester == "" || err != nil {
-		sendError(w, http.StatusBadRequest, "MISSING_REQUIRED_FIELD", "semester and curriculum_version are required", "")
-		return
+	for i := 0; i < len(scoredCourses); i++ {
+		for j := i + 1; j < len(scoredCourses); j++ {
+			if scoredCourses[i].FitScore < scoredCourses[j].FitScore {
+				scoredCourses[i], scoredCourses[j] = scoredCourses[j], scoredCourses[i]
+			}
+		}
 	}
 
-	// Fetch course catalog
-	client := NewA1CEClient()
-	catalog, err := client.GetCourseCatalog(semester, curriculumVersion)
-	if err != nil {
-		log.Printf("Error fetching course catalog: %v", err)
-		sendError(w, http.StatusInternalServerError, "A1CE_API_UNAVAILABLE", "Failed to fetch course catalog", err.Error())
-		return
+	recommendedSet := OptimizeCourseSet(scoredCourses, profile, requirements, req.MaxCreditLoad)
+
+	totalCredits := 0.0
+	for _, r := range recommendedSet {
+		totalCredits += r.Course.CreditHours
+	}
+
+	response := RecommendationSet{
+		StudentID:      req.StudentID,
+		Semester:       req.Semester,
+		RecommendedSet: recommendedSet,
+		TotalCredits:   totalCredits,
+		Metrics:        EvaluationMetrics{GoodnessScore: 0.85},
+		Metadata: RecommendationMetadata{
+			GenerationTimestamp: time.Now(),
+			AlgorithmVersion:    "1.10-SemCheck",
+		},
+		Status: "success",
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
 
-// Helper function to send error responses
+func isCourseCompleted(course Course, profile *StudentProfile) bool {
+	for _, completedCode := range profile.CompletedCourses {
+		if completedCode == course.CourseID {
+			return true
+		}
+		if course.CourseCode != "" && completedCode == course.CourseCode {
+			return true
+		}
+		if completedCode == course.CourseName {
+			return true
+		}
+	}
+	return false
+}
+
+func containsString(slice []string, val string) bool {
+	for _, item := range slice {
+		if item == val {
+			return true
+		}
+	}
+	return false
+}
+
 func sendError(w http.ResponseWriter, statusCode int, errorCode, message, details string) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)

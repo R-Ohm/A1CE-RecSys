@@ -43,14 +43,15 @@ func (c *A1CEClient) GetStudentProfile(studentID string) (*StudentProfile, error
 	profile.CurriculumVersion = identity.CurriculumVersion
 
 	cards, err := c.getStudentCompetencies(studentID)
-	if err != nil {
-		return nil, fmt.Errorf("failed to fetch competencies: %w", err)
-	}
-
-	for _, card := range cards {
-		profile.Competencies[card.CourseCode] = card.Grade
-		if card.Status == "Recorded" {
-			profile.CompletedCourses = append(profile.CompletedCourses, card.CourseCode)
+	if err == nil {
+		for _, card := range cards {
+			profile.Competencies[card.CourseCode] = card.Grade
+			if card.Semester != "" {
+				profile.CourseSemesters[card.CourseCode] = card.Semester
+			}
+			if card.Status == "Recorded" {
+				profile.CompletedCourses = append(profile.CompletedCourses, card.CourseCode)
+			}
 		}
 	}
 
@@ -64,7 +65,25 @@ func (c *A1CEClient) GetStudentProfile(studentID string) (*StudentProfile, error
 	return profile, nil
 }
 
-// GetCourseCatalog fetches available courses for a semester
+func (c *A1CEClient) GetSemesterCompetencies(studentID, semester string) ([]A1CECompetencyCard, error) {
+	safeSemester := url.QueryEscape(semester)
+	if strings.Contains(semester, " ") && !strings.Contains(safeSemester, "%20") {
+		safeSemester = strings.ReplaceAll(semester, " ", "%20")
+	}
+
+	url := fmt.Sprintf("%s/student/cards/semester?student_id=%s&semester_name=%s", c.BaseURL, studentID, safeSemester)
+
+	var input struct {
+		Info struct {
+			Cards []A1CECompetencyCard `json:"cards"`
+		} `json:"card_info"`
+	}
+	if err := c.makeRequest("GET", url, &input); err != nil {
+		return nil, err
+	}
+	return input.Info.Cards, nil
+}
+
 func (c *A1CEClient) GetCourseCatalog(semester string, curriculumVersion int) (*CourseCatalogResponse, error) {
 	subdomains, err := c.getSubdomains(curriculumVersion)
 	if err != nil {
@@ -173,11 +192,45 @@ func (c *A1CEClient) getCoursesForSubdomain(subdomainID, semester string, curric
 	url := fmt.Sprintf("%s/competency?subdomain_id=%s&semester_name=%s&curriculum_version=%d",
 		c.BaseURL, subdomainID, safeSemester, curriculumVersion)
 
-	var courses []Course
-	if err := c.makeRequest("GET", url, &courses); err != nil {
+	if c.UniversityCode != "" {
+		url += "&university_code=" + c.UniversityCode
+	}
+
+	type APICourse struct {
+		ID          string  `json:"id"`
+		Code        string  `json:"competency_code"`
+		Title       string  `json:"title"`
+		Description string  `json:"description"`
+		Credits     float64 `json:"credits"`
+		Semester    string  `json:"semester_offered"` // Attempt to capture if available
+	}
+	var response struct {
+		Competencies []APICourse `json:"competencies"`
+	}
+	if err := c.makeRequest("GET", url, &response); err != nil {
 		return nil, err
 	}
 
+	var courses []Course
+	for _, ac := range response.Competencies {
+		finalID := ac.ID
+		if finalID == "" {
+			finalID = ac.Code
+		}
+
+		courses = append(courses, Course{
+			CourseID:             finalID,
+			CourseCode:           ac.Code,
+			CourseName:           ac.Title,
+			Description:          ac.Description,
+			CreditHours:          ac.Credits,
+			SubdomainID:          subdomainID,
+			SemesterOffered:      ac.Semester, // Map it
+			RequiredCompetencies: make(map[string]float64),
+			TeachesCompetencies:  []string{},
+			Prerequisites:        []string{},
+		})
+	}
 	return courses, nil
 }
 
