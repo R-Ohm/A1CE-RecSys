@@ -4,11 +4,12 @@ import "time"
 
 // Request structures
 type RecommendationRequest struct {
-	StudentID     string                 `json:"student_id"`
-	Semester      string                 `json:"semester"`
-	MaxCreditLoad float64                `json:"max_credit_load"`
-	MaxSets       int                    `json:"max_sets"`
-	Constraints   *RecommendationFilters `json:"constraints,omitempty"`
+	StudentID        string                 `json:"student_id"`
+	Semester         string                 `json:"semester"`
+	MaxCreditLoad    float64                `json:"max_credit_load"`
+	MaxSets          int                    `json:"max_sets"`
+	Constraints      *RecommendationFilters `json:"constraints,omitempty"`
+	PreviousSemester string                 `json:"previous_semester,omitempty"`
 }
 
 type RecommendationFilters struct {
@@ -23,18 +24,20 @@ type StudentProfile struct {
 	UniversityCode       string                `json:"university_code"`
 	CurriculumVersion    int                   `json:"curriculum_version"`
 	Competencies         map[string]float64    `json:"competencies"`
+	CourseSemesters      map[string]string     `json:"course_semesters"`
 	CompletedCourses     []string              `json:"completed_courses"`
 	DistributionCredits  map[string]A1CECredit `json:"distribution_credits"`
 	RequiredCompetencies []string              `json:"required_competencies"`
 	TotalCredits         A1CECredit            `json:"total_credits"`
 	InterestWeights      map[string]float64    `json:"interest_weights"`
 	MaxCreditLoad        float64               `json:"max_credit_load"`
-	Semester             string                `json:"semester"` // Currently not used
+	Semester             string                `json:"semester"`
 }
 
 // Course structures
 type Course struct {
 	CourseID             string             `json:"course_id"`
+	CourseCode           string             `json:"course_code"` // ADDED THIS FIELD
 	CourseName           string             `json:"course_name"`
 	Description          string             `json:"description,omitempty"`
 	CreditHours          float64            `json:"credit_hours"`
@@ -102,9 +105,9 @@ type A1CECompetencyCard struct {
 	CourseCode   string  `json:"competency_code"`
 	Grade        float64 `json:"mastery_level"`
 	Status       string  `json:"status"`
+	Semester     string  `json:"semester_name"`
 }
 
-// for A1CECreditStatus
 type A1CECredit struct {
 	Earned   int `json:"total_earned_credits"`
 	Required int `json:"total_required_credits"`
