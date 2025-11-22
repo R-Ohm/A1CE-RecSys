@@ -5,12 +5,19 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
 )
 
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "eval" {
+		if err := EvaluateAllStudentsFromSQLite("a1ce_recommendation.db"); err != nil {
+			log.Fatalf("evaluation failed: %v", err)
+		}
+		return
+	}
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/api/v1/recommendations", handleRecommendations)
