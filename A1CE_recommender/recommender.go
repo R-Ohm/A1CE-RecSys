@@ -214,7 +214,9 @@ func GetMissingCompetencies(course Course, profile *StudentProfile) []string {
 	return difference(requiredComps, studentComps)
 }
 
-// Helper functions
+// --- SHARED HELPER FUNCTIONS (Used by both recommender and optimizer) ---
+
+// getMapKeys returns keys of a map as a slice
 func getMapKeys(m map[string]float64) []string {
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -223,30 +225,30 @@ func getMapKeys(m map[string]float64) []string {
 	return keys
 }
 
-func intersection(a, b []string) []string {
+// difference returns elements in 'a' that are not in 'b'
+func difference(a, b []string) []string {
 	set := make(map[string]bool)
-	for _, item := range a {
+	for _, item := range b {
 		set[item] = true
 	}
-
 	var result []string
-	for _, item := range b {
-		if set[item] {
+	for _, item := range a {
+		if !set[item] {
 			result = append(result, item)
 		}
 	}
 	return result
 }
 
-func difference(a, b []string) []string {
+// intersection returns elements present in both 'a' and 'b'
+func intersection(a, b []string) []string {
 	set := make(map[string]bool)
-	for _, item := range b {
+	for _, item := range a {
 		set[item] = true
 	}
-
 	var result []string
-	for _, item := range a {
-		if !set[item] {
+	for _, item := range b {
+		if set[item] {
 			result = append(result, item)
 		}
 	}

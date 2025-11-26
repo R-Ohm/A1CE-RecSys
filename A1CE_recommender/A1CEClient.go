@@ -49,8 +49,13 @@ func (c *A1CEClient) GetStudentProfile(studentID string) (*StudentProfile, error
 			if card.Semester != "" {
 				profile.CourseSemesters[card.CourseCode] = card.Semester
 			}
-			if card.Status == "Recorded" {
+			if card.Status == "Recorded" || card.Status == "Completed" || card.Grade >= 1.0 {
+				// Add basic code
 				profile.CompletedCourses = append(profile.CompletedCourses, card.CourseCode)
+				// Add TemplateID if available (Crucial for Identity Match)
+				if card.TemplateID != "" {
+					profile.CompletedCourses = append(profile.CompletedCourses, card.TemplateID)
+				}
 			}
 		}
 	}
@@ -94,13 +99,21 @@ func (c *A1CEClient) GetCourseCatalog(semester string, curriculumVersion int) (*
 		Status: "success", Semester: semester, CurriculumVersion: curriculumVersion, Courses: []Course{},
 	}
 
-	for _, subdomainID := range subdomains {
-		courses, err := c.getCoursesForSubdomain(subdomainID, semester, curriculumVersion)
+	seenIDs := make(map[string]bool)
+
+	for subdomainID, isCore := range subdomains {
+		courses, err := c.getCoursesForSubdomain(subdomainID, semester, curriculumVersion, isCore)
 		if err != nil {
 			fmt.Printf("Warning: Failed to fetch subdomain %s: %v\n", subdomainID, err)
 			continue
 		}
-		catalog.Courses = append(catalog.Courses, courses...)
+
+		for _, course := range courses {
+			if !seenIDs[course.CourseID] {
+				seenIDs[course.CourseID] = true
+				catalog.Courses = append(catalog.Courses, course)
+			}
+		}
 	}
 
 	catalog.TotalCourses = len(catalog.Courses)
@@ -137,25 +150,39 @@ func (c *A1CEClient) getGraduationStatus(studentID string) (*A1CEGraduationStatu
 	url := fmt.Sprintf("%s/student/graduation/status?student_id=%s", c.BaseURL, studentID)
 	var input struct {
 		Status struct {
-			RequiredCompetencies []struct {
-				Code string `json:"competency_code"`
-			} `json:"required_course_not_taken"`
+			RequiredCompetencies interface{} `json:"required_course_not_taken"`
 			A1CECreditStatus
 		} `json:"graduationstatus"`
 	}
+
 	if err := c.makeRequest("GET", url, &input); err != nil {
 		return nil, err
 	}
 
 	var status A1CEGraduationStatus
-	for _, c := range input.Status.RequiredCompetencies {
-		status.RequiredCompetencies = append(status.RequiredCompetencies, c.Code)
-	}
 	status.A1CECreditStatus = input.Status.A1CECreditStatus
+	status.RequiredCompetencies = []string{}
+
+	switch v := input.Status.RequiredCompetencies.(type) {
+	case []interface{}:
+		for _, item := range v {
+			switch val := item.(type) {
+			case string:
+				status.RequiredCompetencies = append(status.RequiredCompetencies, val)
+			case map[string]interface{}:
+				if code, ok := val["competency_code"].(string); ok {
+					status.RequiredCompetencies = append(status.RequiredCompetencies, code)
+				} else if code, ok := val["code"].(string); ok {
+					status.RequiredCompetencies = append(status.RequiredCompetencies, code)
+				}
+			}
+		}
+	}
+
 	return &status, nil
 }
 
-func (c *A1CEClient) getSubdomains(curriculumVersion int) ([]string, error) {
+func (c *A1CEClient) getSubdomains(curriculumVersion int) (map[string]bool, error) {
 	url := fmt.Sprintf("%s/subdomain?curriculum_version=%d", c.BaseURL, curriculumVersion)
 	if c.UniversityCode != "" {
 		url += "&university_code=" + c.UniversityCode
@@ -163,6 +190,7 @@ func (c *A1CEClient) getSubdomains(curriculumVersion int) ([]string, error) {
 
 	var response struct {
 		Pillars []struct {
+			IsCore     bool `json:"is_core"`
 			Subdomains []struct {
 				ID string `json:"id"`
 			} `json:"subdomains"`
@@ -172,18 +200,18 @@ func (c *A1CEClient) getSubdomains(curriculumVersion int) ([]string, error) {
 		return nil, err
 	}
 
-	var subdomains []string
+	subdomains := make(map[string]bool)
 	for _, p := range response.Pillars {
 		for _, s := range p.Subdomains {
 			if s.ID != "" {
-				subdomains = append(subdomains, s.ID)
+				subdomains[s.ID] = p.IsCore
 			}
 		}
 	}
 	return subdomains, nil
 }
 
-func (c *A1CEClient) getCoursesForSubdomain(subdomainID, semester string, curriculumVersion int) ([]Course, error) {
+func (c *A1CEClient) getCoursesForSubdomain(subdomainID, semester string, curriculumVersion int, isPillarCore bool) ([]Course, error) {
 	safeSemester := url.QueryEscape(semester)
 	if strings.Contains(semester, " ") && !strings.Contains(safeSemester, "%20") {
 		safeSemester = strings.ReplaceAll(semester, " ", "%20")
@@ -198,11 +226,14 @@ func (c *A1CEClient) getCoursesForSubdomain(subdomainID, semester string, curric
 
 	type APICourse struct {
 		ID          string  `json:"id"`
+		TemplateID  string  `json:"template_id"` // Identity Code from Catalog
 		Code        string  `json:"competency_code"`
 		Title       string  `json:"title"`
 		Description string  `json:"description"`
 		Credits     float64 `json:"credits"`
-		Semester    string  `json:"semester_offered"` // Attempt to capture if available
+		Semester    string  `json:"semester_offered"`
+		IsCore      bool    `json:"is_core"`
+		IsRequired  bool    `json:"is_required"`
 	}
 	var response struct {
 		Competencies []APICourse `json:"competencies"`
@@ -218,14 +249,19 @@ func (c *A1CEClient) getCoursesForSubdomain(subdomainID, semester string, curric
 			finalID = ac.Code
 		}
 
+		isCore := ac.IsCore || ac.IsRequired
+
 		courses = append(courses, Course{
 			CourseID:             finalID,
+			TemplateID:           ac.TemplateID, // Store Identity Code
 			CourseCode:           ac.Code,
 			CourseName:           ac.Title,
 			Description:          ac.Description,
 			CreditHours:          ac.Credits,
 			SubdomainID:          subdomainID,
-			SemesterOffered:      ac.Semester, // Map it
+			SemesterOffered:      ac.Semester,
+			IsCore:               isCore,
+			IsRequired:           ac.IsRequired,
 			RequiredCompetencies: make(map[string]float64),
 			TeachesCompetencies:  []string{},
 			Prerequisites:        []string{},

@@ -12,37 +12,85 @@ func OptimizeCourseSet(
 	var selectedCourses []RecommendedCourse
 	totalCredits := 0.0
 
-	// 1. Define Targets based on User Input
-	// Cap at 60 for safety, but try to reach user's input (e.g., 50)
-	absoluteMax := 60.0
-	targetCredits := math.Min(maxCreditLoad, absoluteMax)
+	// UPDATED: Allow maxCreditLoad to exceed 60 if requested
+	// absoluteMax := 60.0
+	targetCredits := maxCreditLoad // math.Min(maxCreditLoad, absoluteMax) removed
 
-	// Relaxed Diversity: Allow more courses from the same area if we have space
 	subdomainCount := make(map[string]int)
-	maxPerSubdomain := 10 // Increased from 3 to 10 to allow filling up the credits
+	maxPerSubdomain := 10
 
+	// 1. Identify Graduation Requirements
+	graduationReqMap := make(map[string]bool)
+	for _, req := range requirements.RequiredCompetencies {
+		graduationReqMap[req] = true
+	}
+
+	// 2. Priority Selection: Pick up to 3 distinct Graduation Requirements first
+	priorityCount := 0
+	targetPriorityCount := 3
+
+	// Helper to check if course satisfies a missing graduation requirement
+	isGraduationRequirement := func(c Course) bool {
+		if graduationReqMap[c.CourseCode] {
+			return true
+		}
+		if graduationReqMap[c.CourseID] {
+			return true
+		}
+		for _, taught := range c.TeachesCompetencies {
+			if graduationReqMap[taught] {
+				return true
+			}
+		}
+		return false
+	}
+
+	// Phase 1: Priority Pass
 	for _, courseRec := range scoredCourses {
+		if priorityCount >= targetPriorityCount {
+			break
+		}
+
 		course := courseRec.Course
 
-		// Constraint 1: Credit Limit
-		// Only stop if adding this course would exceed the User's Target
+		if !isGraduationRequirement(course) {
+			continue
+		}
+
 		if totalCredits+course.CreditHours > targetCredits {
 			continue
 		}
-
-		// Constraint 2: Diversity
-		subdomain := course.SubdomainID
-		if subdomainCount[subdomain] >= maxPerSubdomain {
+		if containsRecommendedCourse(selectedCourses, courseRec) {
 			continue
 		}
 
-		// Add course
 		selectedCourses = append(selectedCourses, courseRec)
 		totalCredits += course.CreditHours
-		subdomainCount[subdomain]++
+		subdomainCount[course.SubdomainID]++
+		priorityCount++
+	}
 
-		// Check if we are "full enough" (within 2 credits of target)
-		if totalCredits >= targetCredits-2.0 {
+	// Phase 2: Fill the rest
+	for _, courseRec := range scoredCourses {
+		course := courseRec.Course
+
+		if containsRecommendedCourse(selectedCourses, courseRec) {
+			continue
+		}
+
+		if totalCredits+course.CreditHours > targetCredits {
+			continue
+		}
+		if subdomainCount[course.SubdomainID] >= maxPerSubdomain {
+			continue
+		}
+
+		selectedCourses = append(selectedCourses, courseRec)
+		totalCredits += course.CreditHours
+		subdomainCount[course.SubdomainID]++
+
+		// UPDATED: Relax the break condition slightly to allow filling up to exact target
+		if totalCredits >= targetCredits {
 			break
 		}
 	}
@@ -121,7 +169,6 @@ func CalculateProgramProgressFit(
 	studentProfile *StudentProfile,
 	requirements *CurriculumRequirements,
 ) float64 {
-	// Component 1: Required Competency Progress
 	requiredComps := requirements.RequiredCompetencies
 	currentComps := getMapKeys(studentProfile.Competencies)
 	missingRequired := difference(requiredComps, currentComps)
@@ -137,9 +184,7 @@ func CalculateProgramProgressFit(
 		competencyProgress = float64(len(covered)) / float64(len(missingRequired))
 	}
 
-	// Component 2: Distribution Area Progress
 	var distributionProgressScores []float64
-
 	distributionCoverage := make(map[string]float64)
 	for _, courseRec := range recommendedSet {
 		subdomain := courseRec.Course.SubdomainID
@@ -170,11 +215,10 @@ func CalculateProgramProgressFit(
 		distributionProgress = mean(distributionProgressScores)
 	}
 
-	// Weighted combination
 	return 0.6*competencyProgress + 0.4*distributionProgress
 }
 
-// --- Helper Functions ---
+// --- Helper Functions (Only those specific to optimizer) ---
 
 func containsRecommendedCourse(courses []RecommendedCourse, course RecommendedCourse) bool {
 	for _, c := range courses {
@@ -195,23 +239,4 @@ func unique(slice []string) []string {
 		}
 	}
 	return result
-}
-
-func localGetMapKeys(m map[string]float64) []string {
-	keys := make([]string, 0, len(m))
-	for k := range m {
-		keys = append(keys, k)
-	}
-	return keys
-}
-
-func localMean(values []float64) float64 {
-	if len(values) == 0 {
-		return 0
-	}
-	sum := 0.0
-	for _, v := range values {
-		sum += v
-	}
-	return sum / float64(len(values))
 }

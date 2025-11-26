@@ -34,19 +34,37 @@ type StudentProfile struct {
 	Semester             string                `json:"semester"`
 }
 
-// Course structures
+// Course structures - Internal Logic & Catalog Response
 type Course struct {
 	CourseID             string             `json:"course_id"`
-	CourseCode           string             `json:"course_code"` // ADDED THIS FIELD
+	TemplateID           string             `json:"identity_code,omitempty"` // RENAMED: template_id -> identity_code
+	CourseCode           string             `json:"course_code"`
 	CourseName           string             `json:"course_name"`
 	Description          string             `json:"description,omitempty"`
 	CreditHours          float64            `json:"credit_hours"`
 	SubdomainID          string             `json:"subdomain_id"`
 	SubdomainName        string             `json:"subdomain_name,omitempty"`
-	RequiredCompetencies map[string]float64 `json:"required_competencies"`
-	TeachesCompetencies  []string           `json:"teaches_competencies"`
-	Prerequisites        []string           `json:"prerequisites"`
-	SemesterOffered      string             `json:"semester_offered"`
+	RequiredCompetencies map[string]float64 `json:"required_competencies,omitempty"`
+	TeachesCompetencies  []string           `json:"teaches_competencies,omitempty"`
+	Prerequisites        []string           `json:"prerequisites,omitempty"`
+	SemesterOffered      string             `json:"semester_offered,omitempty"`
+	IsCore               bool               `json:"is_core"`
+	IsRequired           bool               `json:"is_required"`
+}
+
+// CourseOutput - For Recommendation Response
+type CourseOutput struct {
+	CourseID             string            `json:"course_id"`
+	TemplateID           string            `json:"identity_code,omitempty"` // RENAMED: course_identity -> identity_code
+	CourseCode           string            `json:"course_code"`
+	CourseName           string            `json:"course_name"`
+	Description          string            `json:"description,omitempty"`
+	CreditHours          float64           `json:"credit_hours"`
+	SubdomainID          string            `json:"subdomain_id"`
+	SubdomainName        string            `json:"subdomain_name,omitempty"`
+	RequiredCompetencies map[string]string `json:"required_competencies,omitempty"`
+	TeachesCompetencies  []string          `json:"teaches_competencies,omitempty"`
+	SemesterOffered      string            `json:"semester_offered,omitempty"`
 }
 
 // Curriculum requirements
@@ -59,14 +77,15 @@ type CurriculumRequirements struct {
 
 // Recommendation output structures
 type RecommendedCourse struct {
-	Course                 Course   `json:"course"`
-	FitScore               float64  `json:"fit_score"`
-	MatchedCompetencies    []string `json:"matched_competencies"`
-	MissingCompetencies    []string `json:"missing_competencies"`
-	CompetencyMatchScore   float64  `json:"competency_match_score"`
-	InterestAlignmentScore float64  `json:"interest_alignment_score"`
-	ProgramProgressScore   float64  `json:"program_progress_score"`
-	Reason                 string   `json:"reason"`
+	Course                 Course       `json:"-"`
+	DisplayCourse          CourseOutput `json:"course"`
+	FitScore               float64      `json:"fit_score"`
+	MatchedCompetencies    []string     `json:"matched_competencies,omitempty"`
+	MissingCompetencies    []string     `json:"missing_competencies,omitempty"`
+	CompetencyMatchScore   float64      `json:"competency_match_score"`
+	InterestAlignmentScore float64      `json:"interest_alignment_score"`
+	ProgramProgressScore   float64      `json:"program_progress_score"`
+	Reason                 string       `json:"reason"`
 }
 
 type RecommendationSet struct {
@@ -78,6 +97,7 @@ type RecommendationSet struct {
 	DistributionCoverage map[string]float64     `json:"distribution_coverage"`
 	Metadata             RecommendationMetadata `json:"metadata"`
 	Status               string                 `json:"status"`
+	Warning              string                 `json:"warning,omitempty"`
 }
 
 type EvaluationMetrics struct {
@@ -102,7 +122,9 @@ type A1CEStudentIdentity struct {
 
 type A1CECompetencyCard struct {
 	CompetencyID string  `json:"id"`
+	TemplateID   string  `json:"template_id"`
 	CourseCode   string  `json:"competency_code"`
+	CourseName   string  `json:"title"`
 	Grade        float64 `json:"mastery_level"`
 	Status       string  `json:"status"`
 	Semester     string  `json:"semester_name"`
