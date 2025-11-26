@@ -1,169 +1,169 @@
-2025/11/22 13:49:10 Processing student: 00f0dc1eba6a497faf18d123c57a3811
-2025/11/22 13:49:10 Processing student: 0231e004f69c43a99e2f93dc5e0ca8c5
-2025/11/22 13:49:10 Processing student: 038a3d5f50734a229c298e7100354939
-2025/11/22 13:49:10 Processing student: 03b23f7bafd243e594db67b82490ab61
-2025/11/22 13:49:10 Processing student: 0f9637f46364442b9cdbb71df65a0f3b
-2025/11/22 13:49:10 Processing student: 100e46beb6184ca6a7b2a9ee391af802
-2025/11/22 13:49:10 Processing student: 138167e2af854f648e3ad67ed2f53fd5
-2025/11/22 13:49:10 Processing student: 1751b85bbf3f4ccbb377d8a94df1943d
-2025/11/22 13:49:10 Student 1751b85bbf3f4ccbb377d8a94df1943d: no top competencies (>=0.8)
-2025/11/22 13:49:10 Processing student: 1787e4ffc8fd4853a232f15d19f933a5
-2025/11/22 13:49:10 Processing student: 18f05c9dab594317ba8a861f4cc4c891
-2025/11/22 13:49:10 Processing student: 1ca4e758bb5b4b47a685e4d0c3c353e8
-2025/11/22 13:49:10 Processing student: 1feed4cd4c12476d81dc7fd610c86068
-2025/11/22 13:49:10 Processing student: 215ee7d22ddc42cbb0d5dc46bff9f2f4
-2025/11/22 13:49:10 Processing student: 22000b53fb1441369c2239c485690c4e
-2025/11/22 13:49:10 Processing student: 24272b676ed14c5aa50d095116f8e5c0
-2025/11/22 13:49:10 Processing student: 250e46329ae74bc297dd9c9398db432a
-2025/11/22 13:49:10 Processing student: 259b5f16eec24483a9ca9a9d87e38005
-2025/11/22 13:49:10 Processing student: 3607f60065c94f2eb54c2fa593659986
-2025/11/22 13:49:10 Processing student: 39eeda5541ab4e2488128260d40a14dd
-2025/11/22 13:49:10 Processing student: 3b730c3ad3db41d8ad7d63339c042e49
-2025/11/22 13:49:10 Processing student: 3c010afd882d4ae7ab9c4f19c60d787d
-2025/11/22 13:49:10 Processing student: 3d7c05f6170344b5becc78b2ac1603a0
-2025/11/22 13:49:10 Processing student: 40a702bd8a5f43d5b9bb67617eef088f
-2025/11/22 13:49:10 Processing student: 40ff6eedc8dd437b96aeb8ab78bf51c0
-2025/11/22 13:49:10 Processing student: 4109494b648c441db8bfd506ceb4a819
-2025/11/22 13:49:10 Processing student: 432158bac8a14c90b046783b4890c5de
-2025/11/22 13:49:10 Processing student: 4bca2c10d73e4ec6b1e497bd742bdc2d
-2025/11/22 13:49:10 Processing student: 4d1f5f586e4042fb8c11e04dec1e4526
-2025/11/22 13:49:10 Processing student: 4eeafac143cc43ab8b554c898ea1a33c
-2025/11/22 13:49:10 Processing student: 5396e2b82a5e4842a4a8a9f6003ab9d3
-2025/11/22 13:49:10 Processing student: 573fa3ee1cd34b8a971b4587bc367ce8
-2025/11/22 13:49:10 Processing student: 58e1d981772d43f8b15617e865e7d422
-2025/11/22 13:49:10 Processing student: 5dee5d7a3ec642fcafca58ad0c0a334d
-2025/11/22 13:49:10 Processing student: 5eb03826c62c462ca4e63a6434be0f31
-2025/11/22 13:49:10 Processing student: 5fa1a6632c974d6697dc91e719d4b7d4
-2025/11/22 13:49:10 Processing student: 61d47236c8dc475e8cc8ef4b4fe429ad
-2025/11/22 13:49:10 Processing student: 6247da0c897c4247aac57accbab74d8b
-2025/11/22 13:49:10 Processing student: 66d78eb0a1d549d0a2b99e6aca11d30d
-2025/11/22 13:49:10 Processing student: 67b8d16644894a5ca4afba623ef88592
-2025/11/22 13:49:10 Processing student: 68781ecf66204f638ea486ab5bf45e46
-2025/11/22 13:49:10 Processing student: 6e7cd7da55ef4ef98334a2a8ab199bdd
-2025/11/22 13:49:10 Processing student: 739eef6a772d44adb231cf493cbc83a9
-2025/11/22 13:49:10 Processing student: 76b00b9f870c46da8b83ec6844389942
-2025/11/22 13:49:10 Processing student: 76f7a87cea9647829c0b1beb7ca77dc9
-2025/11/22 13:49:10 Processing student: 777c2f4deea44a14ae98598a229b9da9
-2025/11/22 13:49:10 Processing student: 77ac131425e64550932cafa1b9caf342
-2025/11/22 13:49:10 Processing student: 7f27490861bc46bf8de750471c46621e
-2025/11/22 13:49:10 Processing student: 8394d3b9ec044ad88d3690ed96e16f45
-2025/11/22 13:49:10 Processing student: 85b343e4928e4e8482558259a27be71d
-2025/11/22 13:49:10 Processing student: 86d7343130af40b79e0c380aa4eb34fb
-2025/11/22 13:49:10 Processing student: 887ab1b5e3274578bd3694eced6b5ca5
-2025/11/22 13:49:10 Processing student: 89bfc693704e410da9e9b2b05b762645
-2025/11/22 13:49:10 Processing student: 8a6d1d9513034dd49f31731ad2363268
-2025/11/22 13:49:10 Processing student: 8cf290cd570147638c09337e7949a5c4
-2025/11/22 13:49:10 Processing student: 8f8114cc75f14655a2318ddc3d642f8e
-2025/11/22 13:49:10 Processing student: 96798963e6a140059aab83d10f4a075b
-2025/11/22 13:49:10 Processing student: 98a78935cf964f32882623346cd00475
-2025/11/22 13:49:10 Processing student: a4ef8c1e08fb477297c3b5211bc8df81
-2025/11/22 13:49:10 Processing student: af439bc5734d4622b4be49eda1ac9bb0
-2025/11/22 13:49:10 Processing student: aff61b12db604999b0326653858f5bf7
-2025/11/22 13:49:10 Processing student: b00be64679d64c2fb3963c1343e15ed0
-2025/11/22 13:49:10 Processing student: b3fb4551e2274c608d010ea840e491cd
-2025/11/22 13:49:10 Processing student: b4c636a678d042428d78f6286853bfe0
-2025/11/22 13:49:10 Processing student: b7b54fc93fd644158660926a8c9ee7a6
-2025/11/22 13:49:10 Processing student: b80820c51816425caf19ddef8c54d38c
-2025/11/22 13:49:10 Processing student: be31d2d3184646378ec335126f5a34f3
-2025/11/22 13:49:10 Processing student: c59944e1ee3b4c9dac2a1e9df23e30e5
-2025/11/22 13:49:10 Processing student: c675815b58c04d558bdfe11da07a3e32
-2025/11/22 13:49:10 Processing student: c7081b7dd0834553861e47ed064e2591
-2025/11/22 13:49:10 Processing student: c9aeacf8b6a4448dabb061937381961e
-2025/11/22 13:49:10 Processing student: d04a489b257340f8b6ddb9360aa674d3
-2025/11/22 13:49:10 Processing student: d42e6097b34e4b80ad2e73a10bc4d036
-2025/11/22 13:49:10 Processing student: d4d5b891ab6d4e2691210f0797c2f6fa
-2025/11/22 13:49:10 Processing student: dd085f1b9cdc4c188f0dece1205a9671
-2025/11/22 13:49:10 Processing student: dd5c792dc4854a0c8424bc0d84939f70
-2025/11/22 13:49:10 Processing student: e0bac19365ec4575a286250ea0010da6
-2025/11/22 13:49:10 Processing student: e223ecf745ce4c35a11efc55232d66e6
-2025/11/22 13:49:10 Processing student: e4f8a95afd9f44209d36f353fdef39bc
-2025/11/22 13:49:10 Processing student: e8cb2c1fad404421afa9a8893fd4256b
-2025/11/22 13:49:10 Processing student: fbe903feba3a4c9ab61b173f7a83ba79
-2025/11/22 13:49:10 Processing student: fcad7a60370e48eba3c0d4a3d5df80af
-2025/11/22 13:49:10 Processing student: fe07e8ab5d0e4c1ba3a7a8e82b6fb65b
-2025/11/22 13:49:10 Processing student: ff6b00d7b126483d8fceb8806cf50255
-2025/11/22 13:49:10 Wrote recommendations to student_recommendations.csv
-2025/11/22 13:49:10 Student 4109494b648c441db8bfd506ceb4a819: true=3, recommended=8, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 432158bac8a14c90b046783b4890c5de: true=5, recommended=11, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 6e7cd7da55ef4ef98334a2a8ab199bdd: true=9, recommended=11, correct=1, acc=0.11
-2025/11/22 13:49:10 Student 86d7343130af40b79e0c380aa4eb34fb: true=4, recommended=5, correct=1, acc=0.25
-2025/11/22 13:49:10 Student 8cf290cd570147638c09337e7949a5c4: true=11, recommended=9, correct=1, acc=0.09
-2025/11/22 13:49:10 Student 98a78935cf964f32882623346cd00475: true=8, recommended=9, correct=0, acc=0.00
-2025/11/22 13:49:10 Student b4c636a678d042428d78f6286853bfe0: true=10, recommended=10, correct=3, acc=0.30
-2025/11/22 13:49:10 Student 4bca2c10d73e4ec6b1e497bd742bdc2d: true=13, recommended=14, correct=5, acc=0.38
-2025/11/22 13:49:10 Student 4d1f5f586e4042fb8c11e04dec1e4526: true=6, recommended=5, correct=1, acc=0.17
-2025/11/22 13:49:10 Student 66d78eb0a1d549d0a2b99e6aca11d30d: true=10, recommended=10, correct=0, acc=0.00
-2025/11/22 13:49:10 Student b80820c51816425caf19ddef8c54d38c: true=7, recommended=11, correct=0, acc=0.00
-2025/11/22 13:49:10 Student e223ecf745ce4c35a11efc55232d66e6: true=8, recommended=12, correct=1, acc=0.12
-2025/11/22 13:49:10 Student 0231e004f69c43a99e2f93dc5e0ca8c5: true=10, recommended=12, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 3b730c3ad3db41d8ad7d63339c042e49: true=3, recommended=7, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 3d7c05f6170344b5becc78b2ac1603a0: true=3, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 4eeafac143cc43ab8b554c898ea1a33c: true=14, recommended=4, correct=2, acc=0.14
-2025/11/22 13:49:10 Student 5eb03826c62c462ca4e63a6434be0f31: true=8, recommended=2, correct=0, acc=0.00
-2025/11/22 13:49:10 Student c9aeacf8b6a4448dabb061937381961e: true=14, recommended=12, correct=3, acc=0.21
-2025/11/22 13:49:10 Student d42e6097b34e4b80ad2e73a10bc4d036: true=10, recommended=12, correct=1, acc=0.10
-2025/11/22 13:49:10 Student d4d5b891ab6d4e2691210f0797c2f6fa: true=12, recommended=7, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 24272b676ed14c5aa50d095116f8e5c0: true=12, recommended=10, correct=1, acc=0.08
-2025/11/22 13:49:10 Student 259b5f16eec24483a9ca9a9d87e38005: true=11, recommended=3, correct=0, acc=0.00
-2025/11/22 13:49:10 Student dd5c792dc4854a0c8424bc0d84939f70: true=3, recommended=5, correct=1, acc=0.33
-2025/11/22 13:49:10 Student 89bfc693704e410da9e9b2b05b762645: true=8, recommended=9, correct=0, acc=0.00
-2025/11/22 13:49:10 Student be31d2d3184646378ec335126f5a34f3: true=6, recommended=9, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 03b23f7bafd243e594db67b82490ab61: true=4, recommended=5, correct=1, acc=0.25
-2025/11/22 13:49:10 Student 100e46beb6184ca6a7b2a9ee391af802: true=8, recommended=4, correct=1, acc=0.12
-2025/11/22 13:49:10 Student 40ff6eedc8dd437b96aeb8ab78bf51c0: true=3, recommended=3, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 739eef6a772d44adb231cf493cbc83a9: true=3, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student b00be64679d64c2fb3963c1343e15ed0: true=8, recommended=12, correct=2, acc=0.25
-2025/11/22 13:49:10 Student b3fb4551e2274c608d010ea840e491cd: true=2, recommended=5, correct=1, acc=0.50
-2025/11/22 13:49:10 Student 18f05c9dab594317ba8a861f4cc4c891: true=14, recommended=12, correct=1, acc=0.07
-2025/11/22 13:49:10 Student 1feed4cd4c12476d81dc7fd610c86068: true=2, recommended=2, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 68781ecf66204f638ea486ab5bf45e46: true=12, recommended=11, correct=3, acc=0.25
-2025/11/22 13:49:10 Student 76f7a87cea9647829c0b1beb7ca77dc9: true=9, recommended=10, correct=1, acc=0.11
-2025/11/22 13:49:10 Student 77ac131425e64550932cafa1b9caf342: true=9, recommended=14, correct=1, acc=0.11
-2025/11/22 13:49:10 Student 8f8114cc75f14655a2318ddc3d642f8e: true=3, recommended=4, correct=0, acc=0.00
-2025/11/22 13:49:10 Student c675815b58c04d558bdfe11da07a3e32: true=13, recommended=11, correct=1, acc=0.08
-2025/11/22 13:49:10 Student 8a6d1d9513034dd49f31731ad2363268: true=12, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 138167e2af854f648e3ad67ed2f53fd5: true=11, recommended=9, correct=1, acc=0.09
-2025/11/22 13:49:10 Student 6247da0c897c4247aac57accbab74d8b: true=11, recommended=4, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 76b00b9f870c46da8b83ec6844389942: true=4, recommended=5, correct=1, acc=0.25
-2025/11/22 13:49:10 Student 887ab1b5e3274578bd3694eced6b5ca5: true=4, recommended=7, correct=1, acc=0.25
-2025/11/22 13:49:10 Student e4f8a95afd9f44209d36f353fdef39bc: true=3, recommended=8, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 40a702bd8a5f43d5b9bb67617eef088f: true=9, recommended=11, correct=2, acc=0.22
-2025/11/22 13:49:10 Student 573fa3ee1cd34b8a971b4587bc367ce8: true=10, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 96798963e6a140059aab83d10f4a075b: true=7, recommended=11, correct=1, acc=0.14
-2025/11/22 13:49:10 Student d04a489b257340f8b6ddb9360aa674d3: true=3, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student e8cb2c1fad404421afa9a8893fd4256b: true=4, recommended=6, correct=1, acc=0.25
-2025/11/22 13:49:10 Student 3c010afd882d4ae7ab9c4f19c60d787d: true=4, recommended=1, correct=0, acc=0.00
-2025/11/22 13:49:10 Student b7b54fc93fd644158660926a8c9ee7a6: true=8, recommended=9, correct=2, acc=0.25
-2025/11/22 13:49:10 Student dd085f1b9cdc4c188f0dece1205a9671: true=13, recommended=13, correct=3, acc=0.23
-2025/11/22 13:49:10 Student fcad7a60370e48eba3c0d4a3d5df80af: true=3, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 00f0dc1eba6a497faf18d123c57a3811: true=8, recommended=12, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 5dee5d7a3ec642fcafca58ad0c0a334d: true=9, recommended=9, correct=2, acc=0.22
-2025/11/22 13:49:10 Student 67b8d16644894a5ca4afba623ef88592: true=6, recommended=5, correct=1, acc=0.17
-2025/11/22 13:49:10 Student 8394d3b9ec044ad88d3690ed96e16f45: true=3, recommended=11, correct=1, acc=0.33
-2025/11/22 13:49:10 Student c7081b7dd0834553861e47ed064e2591: true=11, recommended=0, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 1751b85bbf3f4ccbb377d8a94df1943d: true=1, recommended=0, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 22000b53fb1441369c2239c485690c4e: true=3, recommended=1, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 85b343e4928e4e8482558259a27be71d: true=9, recommended=8, correct=0, acc=0.00
-2025/11/22 13:49:10 Student af439bc5734d4622b4be49eda1ac9bb0: true=4, recommended=9, correct=1, acc=0.25
-2025/11/22 13:49:10 Student fbe903feba3a4c9ab61b173f7a83ba79: true=10, recommended=7, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 0f9637f46364442b9cdbb71df65a0f3b: true=3, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 5fa1a6632c974d6697dc91e719d4b7d4: true=7, recommended=7, correct=0, acc=0.00
-2025/11/22 13:49:10 Student aff61b12db604999b0326653858f5bf7: true=9, recommended=4, correct=0, acc=0.00
-2025/11/22 13:49:10 Student fe07e8ab5d0e4c1ba3a7a8e82b6fb65b: true=11, recommended=13, correct=3, acc=0.27
-2025/11/22 13:49:10 Student ff6b00d7b126483d8fceb8806cf50255: true=3, recommended=5, correct=1, acc=0.33
-2025/11/22 13:49:10 Student 215ee7d22ddc42cbb0d5dc46bff9f2f4: true=3, recommended=8, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 5396e2b82a5e4842a4a8a9f6003ab9d3: true=11, recommended=10, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 777c2f4deea44a14ae98598a229b9da9: true=5, recommended=11, correct=1, acc=0.20
-2025/11/22 13:49:10 Student 1787e4ffc8fd4853a232f15d19f933a5: true=7, recommended=6, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 250e46329ae74bc297dd9c9398db432a: true=12, recommended=6, correct=1, acc=0.08
-2025/11/22 13:49:10 Student 58e1d981772d43f8b15617e865e7d422: true=2, recommended=3, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 61d47236c8dc475e8cc8ef4b4fe429ad: true=6, recommended=8, correct=0, acc=0.00
-2025/11/22 13:49:10 Student e0bac19365ec4575a286250ea0010da6: true=8, recommended=10, correct=1, acc=0.12
-2025/11/22 13:49:10 Student 038a3d5f50734a229c298e7100354939: true=3, recommended=3, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 1ca4e758bb5b4b47a685e4d0c3c353e8: true=2, recommended=2, correct=0, acc=0.00
-2025/11/22 13:49:10 Student 3607f60065c94f2eb54c2fa593659986: true=3, recommended=6, correct=1, acc=0.33
-2025/11/22 13:49:10 Student 7f27490861bc46bf8de750471c46621e: true=10, recommended=8, correct=2, acc=0.20
-2025/11/22 13:49:10 Student a4ef8c1e08fb477297c3b5211bc8df81: true=6, recommended=3, correct=0, acc=0.00
-2025/11/22 13:49:10 Student c59944e1ee3b4c9dac2a1e9df23e30e5: true=10, recommended=13, correct=1, acc=0.10
-2025/11/22 13:49:10 Student 39eeda5541ab4e2488128260d40a14dd: true=8, recommended=2, correct=1, acc=0.12
-2025/11/22 13:49:10 Average Recommendation Accuracy: 10.22%
+2025/11/26 15:29:00 Processing student: 00f0dc1eba6a497faf18d123c57a3811
+2025/11/26 15:29:00 Processing student: 0231e004f69c43a99e2f93dc5e0ca8c5
+2025/11/26 15:29:00 Processing student: 038a3d5f50734a229c298e7100354939
+2025/11/26 15:29:00 Processing student: 03b23f7bafd243e594db67b82490ab61
+2025/11/26 15:29:00 Processing student: 0f9637f46364442b9cdbb71df65a0f3b
+2025/11/26 15:29:00 Processing student: 100e46beb6184ca6a7b2a9ee391af802
+2025/11/26 15:29:00 Processing student: 138167e2af854f648e3ad67ed2f53fd5
+2025/11/26 15:29:00 Processing student: 1751b85bbf3f4ccbb377d8a94df1943d
+2025/11/26 15:29:00 Student 1751b85bbf3f4ccbb377d8a94df1943d: no top competencies (>=0.8)
+2025/11/26 15:29:00 Processing student: 1787e4ffc8fd4853a232f15d19f933a5
+2025/11/26 15:29:00 Processing student: 18f05c9dab594317ba8a861f4cc4c891
+2025/11/26 15:29:00 Processing student: 1ca4e758bb5b4b47a685e4d0c3c353e8
+2025/11/26 15:29:00 Processing student: 1feed4cd4c12476d81dc7fd610c86068
+2025/11/26 15:29:00 Processing student: 215ee7d22ddc42cbb0d5dc46bff9f2f4
+2025/11/26 15:29:00 Processing student: 22000b53fb1441369c2239c485690c4e
+2025/11/26 15:29:00 Processing student: 24272b676ed14c5aa50d095116f8e5c0
+2025/11/26 15:29:00 Processing student: 250e46329ae74bc297dd9c9398db432a
+2025/11/26 15:29:00 Processing student: 259b5f16eec24483a9ca9a9d87e38005
+2025/11/26 15:29:00 Processing student: 3607f60065c94f2eb54c2fa593659986
+2025/11/26 15:29:00 Processing student: 39eeda5541ab4e2488128260d40a14dd
+2025/11/26 15:29:00 Processing student: 3b730c3ad3db41d8ad7d63339c042e49
+2025/11/26 15:29:00 Processing student: 3c010afd882d4ae7ab9c4f19c60d787d
+2025/11/26 15:29:00 Processing student: 3d7c05f6170344b5becc78b2ac1603a0
+2025/11/26 15:29:00 Processing student: 40a702bd8a5f43d5b9bb67617eef088f
+2025/11/26 15:29:00 Processing student: 40ff6eedc8dd437b96aeb8ab78bf51c0
+2025/11/26 15:29:00 Processing student: 4109494b648c441db8bfd506ceb4a819
+2025/11/26 15:29:00 Processing student: 432158bac8a14c90b046783b4890c5de
+2025/11/26 15:29:00 Processing student: 4bca2c10d73e4ec6b1e497bd742bdc2d
+2025/11/26 15:29:00 Processing student: 4d1f5f586e4042fb8c11e04dec1e4526
+2025/11/26 15:29:00 Processing student: 4eeafac143cc43ab8b554c898ea1a33c
+2025/11/26 15:29:00 Processing student: 5396e2b82a5e4842a4a8a9f6003ab9d3
+2025/11/26 15:29:00 Processing student: 573fa3ee1cd34b8a971b4587bc367ce8
+2025/11/26 15:29:00 Processing student: 58e1d981772d43f8b15617e865e7d422
+2025/11/26 15:29:00 Processing student: 5dee5d7a3ec642fcafca58ad0c0a334d
+2025/11/26 15:29:00 Processing student: 5eb03826c62c462ca4e63a6434be0f31
+2025/11/26 15:29:00 Processing student: 5fa1a6632c974d6697dc91e719d4b7d4
+2025/11/26 15:29:00 Processing student: 61d47236c8dc475e8cc8ef4b4fe429ad
+2025/11/26 15:29:00 Processing student: 6247da0c897c4247aac57accbab74d8b
+2025/11/26 15:29:00 Processing student: 66d78eb0a1d549d0a2b99e6aca11d30d
+2025/11/26 15:29:00 Processing student: 67b8d16644894a5ca4afba623ef88592
+2025/11/26 15:29:00 Processing student: 68781ecf66204f638ea486ab5bf45e46
+2025/11/26 15:29:00 Processing student: 6e7cd7da55ef4ef98334a2a8ab199bdd
+2025/11/26 15:29:00 Processing student: 739eef6a772d44adb231cf493cbc83a9
+2025/11/26 15:29:00 Processing student: 76b00b9f870c46da8b83ec6844389942
+2025/11/26 15:29:00 Processing student: 76f7a87cea9647829c0b1beb7ca77dc9
+2025/11/26 15:29:00 Processing student: 777c2f4deea44a14ae98598a229b9da9
+2025/11/26 15:29:00 Processing student: 77ac131425e64550932cafa1b9caf342
+2025/11/26 15:29:00 Processing student: 7f27490861bc46bf8de750471c46621e
+2025/11/26 15:29:00 Processing student: 8394d3b9ec044ad88d3690ed96e16f45
+2025/11/26 15:29:00 Processing student: 85b343e4928e4e8482558259a27be71d
+2025/11/26 15:29:00 Processing student: 86d7343130af40b79e0c380aa4eb34fb
+2025/11/26 15:29:00 Processing student: 887ab1b5e3274578bd3694eced6b5ca5
+2025/11/26 15:29:00 Processing student: 89bfc693704e410da9e9b2b05b762645
+2025/11/26 15:29:00 Processing student: 8a6d1d9513034dd49f31731ad2363268
+2025/11/26 15:29:00 Processing student: 8cf290cd570147638c09337e7949a5c4
+2025/11/26 15:29:00 Processing student: 8f8114cc75f14655a2318ddc3d642f8e
+2025/11/26 15:29:00 Processing student: 96798963e6a140059aab83d10f4a075b
+2025/11/26 15:29:00 Processing student: 98a78935cf964f32882623346cd00475
+2025/11/26 15:29:00 Processing student: a4ef8c1e08fb477297c3b5211bc8df81
+2025/11/26 15:29:00 Processing student: af439bc5734d4622b4be49eda1ac9bb0
+2025/11/26 15:29:00 Processing student: aff61b12db604999b0326653858f5bf7
+2025/11/26 15:29:00 Processing student: b00be64679d64c2fb3963c1343e15ed0
+2025/11/26 15:29:00 Processing student: b3fb4551e2274c608d010ea840e491cd
+2025/11/26 15:29:00 Processing student: b4c636a678d042428d78f6286853bfe0
+2025/11/26 15:29:00 Processing student: b7b54fc93fd644158660926a8c9ee7a6
+2025/11/26 15:29:00 Processing student: b80820c51816425caf19ddef8c54d38c
+2025/11/26 15:29:00 Processing student: be31d2d3184646378ec335126f5a34f3
+2025/11/26 15:29:00 Processing student: c59944e1ee3b4c9dac2a1e9df23e30e5
+2025/11/26 15:29:00 Processing student: c675815b58c04d558bdfe11da07a3e32
+2025/11/26 15:29:00 Processing student: c7081b7dd0834553861e47ed064e2591
+2025/11/26 15:29:00 Processing student: c9aeacf8b6a4448dabb061937381961e
+2025/11/26 15:29:00 Processing student: d04a489b257340f8b6ddb9360aa674d3
+2025/11/26 15:29:00 Processing student: d42e6097b34e4b80ad2e73a10bc4d036
+2025/11/26 15:29:00 Processing student: d4d5b891ab6d4e2691210f0797c2f6fa
+2025/11/26 15:29:00 Processing student: dd085f1b9cdc4c188f0dece1205a9671
+2025/11/26 15:29:00 Processing student: dd5c792dc4854a0c8424bc0d84939f70
+2025/11/26 15:29:00 Processing student: e0bac19365ec4575a286250ea0010da6
+2025/11/26 15:29:00 Processing student: e223ecf745ce4c35a11efc55232d66e6
+2025/11/26 15:29:00 Processing student: e4f8a95afd9f44209d36f353fdef39bc
+2025/11/26 15:29:00 Processing student: e8cb2c1fad404421afa9a8893fd4256b
+2025/11/26 15:29:00 Processing student: fbe903feba3a4c9ab61b173f7a83ba79
+2025/11/26 15:29:00 Processing student: fcad7a60370e48eba3c0d4a3d5df80af
+2025/11/26 15:29:00 Processing student: fe07e8ab5d0e4c1ba3a7a8e82b6fb65b
+2025/11/26 15:29:00 Processing student: ff6b00d7b126483d8fceb8806cf50255
+2025/11/26 15:29:00 Wrote recommendations to student_recommendations.csv
+2025/11/26 15:29:00 Student 96798963e6a140059aab83d10f4a075b: true=7, recommended=11, correct=1, acc=0.14
+2025/11/26 15:29:00 Student fe07e8ab5d0e4c1ba3a7a8e82b6fb65b: true=11, recommended=13, correct=3, acc=0.27
+2025/11/26 15:29:00 Student 038a3d5f50734a229c298e7100354939: true=3, recommended=3, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 40ff6eedc8dd437b96aeb8ab78bf51c0: true=3, recommended=3, correct=0, acc=0.00
+2025/11/26 15:29:00 Student be31d2d3184646378ec335126f5a34f3: true=6, recommended=9, correct=0, acc=0.00
+2025/11/26 15:29:00 Student d4d5b891ab6d4e2691210f0797c2f6fa: true=12, recommended=7, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 3d7c05f6170344b5becc78b2ac1603a0: true=3, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 887ab1b5e3274578bd3694eced6b5ca5: true=4, recommended=7, correct=1, acc=0.25
+2025/11/26 15:29:00 Student dd5c792dc4854a0c8424bc0d84939f70: true=3, recommended=5, correct=1, acc=0.33
+2025/11/26 15:29:00 Student 0231e004f69c43a99e2f93dc5e0ca8c5: true=10, recommended=12, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 432158bac8a14c90b046783b4890c5de: true=5, recommended=11, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 573fa3ee1cd34b8a971b4587bc367ce8: true=10, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 76b00b9f870c46da8b83ec6844389942: true=4, recommended=5, correct=1, acc=0.25
+2025/11/26 15:29:00 Student 777c2f4deea44a14ae98598a229b9da9: true=5, recommended=11, correct=1, acc=0.20
+2025/11/26 15:29:00 Student 7f27490861bc46bf8de750471c46621e: true=10, recommended=8, correct=2, acc=0.20
+2025/11/26 15:29:00 Student c59944e1ee3b4c9dac2a1e9df23e30e5: true=10, recommended=13, correct=1, acc=0.10
+2025/11/26 15:29:00 Student e0bac19365ec4575a286250ea0010da6: true=8, recommended=10, correct=1, acc=0.12
+2025/11/26 15:29:00 Student 00f0dc1eba6a497faf18d123c57a3811: true=8, recommended=12, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 1ca4e758bb5b4b47a685e4d0c3c353e8: true=2, recommended=2, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 5396e2b82a5e4842a4a8a9f6003ab9d3: true=11, recommended=10, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 67b8d16644894a5ca4afba623ef88592: true=6, recommended=5, correct=1, acc=0.17
+2025/11/26 15:29:00 Student 98a78935cf964f32882623346cd00475: true=8, recommended=9, correct=0, acc=0.00
+2025/11/26 15:29:00 Student d42e6097b34e4b80ad2e73a10bc4d036: true=10, recommended=12, correct=1, acc=0.10
+2025/11/26 15:29:00 Student af439bc5734d4622b4be49eda1ac9bb0: true=4, recommended=9, correct=1, acc=0.25
+2025/11/26 15:29:00 Student b80820c51816425caf19ddef8c54d38c: true=7, recommended=11, correct=0, acc=0.00
+2025/11/26 15:29:00 Student dd085f1b9cdc4c188f0dece1205a9671: true=13, recommended=13, correct=3, acc=0.23
+2025/11/26 15:29:00 Student e4f8a95afd9f44209d36f353fdef39bc: true=3, recommended=8, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 8cf290cd570147638c09337e7949a5c4: true=11, recommended=9, correct=1, acc=0.09
+2025/11/26 15:29:00 Student 1787e4ffc8fd4853a232f15d19f933a5: true=7, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 24272b676ed14c5aa50d095116f8e5c0: true=12, recommended=10, correct=1, acc=0.08
+2025/11/26 15:29:00 Student 3b730c3ad3db41d8ad7d63339c042e49: true=3, recommended=7, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 5dee5d7a3ec642fcafca58ad0c0a334d: true=9, recommended=9, correct=2, acc=0.22
+2025/11/26 15:29:00 Student 739eef6a772d44adb231cf493cbc83a9: true=3, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 76f7a87cea9647829c0b1beb7ca77dc9: true=9, recommended=10, correct=1, acc=0.11
+2025/11/26 15:29:00 Student aff61b12db604999b0326653858f5bf7: true=9, recommended=4, correct=0, acc=0.00
+2025/11/26 15:29:00 Student b00be64679d64c2fb3963c1343e15ed0: true=8, recommended=12, correct=2, acc=0.25
+2025/11/26 15:29:00 Student c675815b58c04d558bdfe11da07a3e32: true=13, recommended=11, correct=1, acc=0.08
+2025/11/26 15:29:00 Student c7081b7dd0834553861e47ed064e2591: true=11, recommended=0, correct=0, acc=0.00
+2025/11/26 15:29:00 Student e223ecf745ce4c35a11efc55232d66e6: true=8, recommended=12, correct=1, acc=0.12
+2025/11/26 15:29:00 Student 215ee7d22ddc42cbb0d5dc46bff9f2f4: true=3, recommended=8, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 3c010afd882d4ae7ab9c4f19c60d787d: true=4, recommended=1, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 4eeafac143cc43ab8b554c898ea1a33c: true=14, recommended=4, correct=2, acc=0.14
+2025/11/26 15:29:00 Student 58e1d981772d43f8b15617e865e7d422: true=2, recommended=3, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 66d78eb0a1d549d0a2b99e6aca11d30d: true=10, recommended=10, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 89bfc693704e410da9e9b2b05b762645: true=8, recommended=9, correct=0, acc=0.00
+2025/11/26 15:29:00 Student b4c636a678d042428d78f6286853bfe0: true=10, recommended=10, correct=3, acc=0.30
+2025/11/26 15:29:00 Student 100e46beb6184ca6a7b2a9ee391af802: true=8, recommended=4, correct=1, acc=0.12
+2025/11/26 15:29:00 Student 8f8114cc75f14655a2318ddc3d642f8e: true=3, recommended=4, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 22000b53fb1441369c2239c485690c4e: true=3, recommended=1, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 6247da0c897c4247aac57accbab74d8b: true=11, recommended=4, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 86d7343130af40b79e0c380aa4eb34fb: true=4, recommended=5, correct=1, acc=0.25
+2025/11/26 15:29:00 Student a4ef8c1e08fb477297c3b5211bc8df81: true=6, recommended=3, correct=0, acc=0.00
+2025/11/26 15:29:00 Student b3fb4551e2274c608d010ea840e491cd: true=2, recommended=5, correct=1, acc=0.50
+2025/11/26 15:29:00 Student c9aeacf8b6a4448dabb061937381961e: true=14, recommended=12, correct=3, acc=0.21
+2025/11/26 15:29:00 Student fcad7a60370e48eba3c0d4a3d5df80af: true=3, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 77ac131425e64550932cafa1b9caf342: true=9, recommended=14, correct=1, acc=0.11
+2025/11/26 15:29:00 Student 8394d3b9ec044ad88d3690ed96e16f45: true=3, recommended=11, correct=1, acc=0.33
+2025/11/26 15:29:00 Student 85b343e4928e4e8482558259a27be71d: true=9, recommended=8, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 138167e2af854f648e3ad67ed2f53fd5: true=11, recommended=8, correct=1, acc=0.09
+2025/11/26 15:29:00 Student 18f05c9dab594317ba8a861f4cc4c891: true=14, recommended=12, correct=1, acc=0.07
+2025/11/26 15:29:00 Student 1feed4cd4c12476d81dc7fd610c86068: true=2, recommended=2, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 3607f60065c94f2eb54c2fa593659986: true=3, recommended=6, correct=1, acc=0.33
+2025/11/26 15:29:00 Student 39eeda5541ab4e2488128260d40a14dd: true=8, recommended=2, correct=1, acc=0.12
+2025/11/26 15:29:00 Student 4d1f5f586e4042fb8c11e04dec1e4526: true=6, recommended=5, correct=1, acc=0.17
+2025/11/26 15:29:00 Student 0f9637f46364442b9cdbb71df65a0f3b: true=3, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 1751b85bbf3f4ccbb377d8a94df1943d: true=1, recommended=0, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 40a702bd8a5f43d5b9bb67617eef088f: true=9, recommended=11, correct=2, acc=0.22
+2025/11/26 15:29:00 Student 4109494b648c441db8bfd506ceb4a819: true=3, recommended=8, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 5eb03826c62c462ca4e63a6434be0f31: true=8, recommended=2, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 68781ecf66204f638ea486ab5bf45e46: true=12, recommended=11, correct=3, acc=0.25
+2025/11/26 15:29:00 Student 6e7cd7da55ef4ef98334a2a8ab199bdd: true=9, recommended=11, correct=1, acc=0.11
+2025/11/26 15:29:00 Student 259b5f16eec24483a9ca9a9d87e38005: true=11, recommended=3, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 4bca2c10d73e4ec6b1e497bd742bdc2d: true=13, recommended=14, correct=5, acc=0.38
+2025/11/26 15:29:00 Student 8a6d1d9513034dd49f31731ad2363268: true=12, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student b7b54fc93fd644158660926a8c9ee7a6: true=8, recommended=9, correct=2, acc=0.25
+2025/11/26 15:29:00 Student fbe903feba3a4c9ab61b173f7a83ba79: true=10, recommended=7, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 5fa1a6632c974d6697dc91e719d4b7d4: true=7, recommended=7, correct=0, acc=0.00
+2025/11/26 15:29:00 Student 61d47236c8dc475e8cc8ef4b4fe429ad: true=6, recommended=8, correct=0, acc=0.00
+2025/11/26 15:29:00 Student d04a489b257340f8b6ddb9360aa674d3: true=3, recommended=6, correct=0, acc=0.00
+2025/11/26 15:29:00 Student e8cb2c1fad404421afa9a8893fd4256b: true=4, recommended=6, correct=1, acc=0.25
+2025/11/26 15:29:00 Student ff6b00d7b126483d8fceb8806cf50255: true=3, recommended=5, correct=1, acc=0.33
+2025/11/26 15:29:00 Student 03b23f7bafd243e594db67b82490ab61: true=4, recommended=5, correct=1, acc=0.25
+2025/11/26 15:29:00 Student 250e46329ae74bc297dd9c9398db432a: true=12, recommended=7, correct=1, acc=0.08
+2025/11/26 15:29:00 Average Recommendation Accuracy: 10.22%
