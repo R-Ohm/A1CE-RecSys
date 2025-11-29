@@ -37,7 +37,7 @@ Make sure your working directory is the **A1CE_recommender** folder before runni
 Have Go and Python installed on your computer.
 
 ### 2. Start the evaluation process
-Open **Terminal 1** and run:
+Open **Terminal** and run:
 ```bash
 go run . eval
 ```
