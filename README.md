@@ -1,8 +1,9 @@
 # A1CE-RecSys
-# How to Run and Test the API
+## How to Run and Test the API
 
 ### 1. Prerequisites
 Make sure your working directory is the **A1CE_recommender** folder before running any commands.
+Have Go and Python installed on your computer.
 
 ### 2. Start the Backend
 Open **Terminal 1** and run:
@@ -29,3 +30,19 @@ http://localhost:3000/test_interface.html
     - ID
     - JWT token
 4. Enter these values into the test interface to run API calls.
+
+## How to run evaluation
+### 1. Prerequisites
+Make sure your working directory is the **A1CE_recommender** folder before running any commands.
+Have Go and Python installed on your computer.
+
+### 2. Start the evaluation process
+Open **Terminal 1** and run:
+```bash
+go run . eval
+```
+
+### 3. Check the output
+- After it finishes executing, you can see a message showing the overall accuracy and that a report was successfully written to a text file.
+- You can view more detailed evaluation results inside the **logs/evaluation_report.txt** file, which contains per-student recommendation accuracy.
+- You can also review all model-generated recommendations for each student in the **student_recommendations.csv** file. Each recommendation is listed using its competency code.
