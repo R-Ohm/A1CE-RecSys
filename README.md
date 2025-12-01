@@ -20,7 +20,7 @@ python3 -m http.server 3000
 ### 4. Access the Test Page
 Open a browser and navigate to:
 ```
-http://localhost:3000/test_interface.html
+http://localhost:3000/A1CE_recommender/test_interface.html
 ```
 
 ### 5. Retrieve Data From A1CE
